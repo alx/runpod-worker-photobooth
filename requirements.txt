@@ -1,0 +1,41 @@
+# Core dependencies
+torch==2.7.0
+torchvision
+runpod==1.7.10
+
+# Diffusers and transformers
+diffusers==0.33.1
+transformers==4.52.4
+accelerate==1.7.0
+safetensors==0.5.3
+xformers==0.0.30
+
+# Face swapping
+insightface>=0.7.3
+onnx>=1.17.0
+onnxruntime-gpu
+
+# ControlNet
+controlnet-aux==0.0.7
+opencv-python
+opencv-contrib-python
+
+# Image processing
+Pillow
+numpy>=1.24.0
+scipy
+
+# Face restoration
+lpips
+scikit-image
+
+# Utilities
+python-dotenv
+PyYAML
+tqdm
+huggingface-hub
+hf_transfer
+hf_xet
+
+# Development
+pprint
