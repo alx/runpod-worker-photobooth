@@ -1,5 +1,7 @@
 # RunPod Photobooth Worker
 
+[![Runpod](https://api.runpod.io/badge/alx/runpod-worker-photobooth)](https://www.console.runpod.io/hub/alx/runpod-worker-photobooth)
+
 A fast AI-powered photobooth worker that combines **TurboVisionXL** image generation with face swapping to create personalized avatars. This worker processes images in 3-5 steps for ultra-fast generation while maintaining high quality.
 
 ## Features
