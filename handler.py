@@ -413,10 +413,11 @@ def initialize_models():
 
     logger.info("All models loaded successfully")
 
-logger.info("Starting RunPod Photobooth Worker")
-
-# Initialize models
-initialize_models()
-
-# Start serverless worker
-runpod.serverless.start({"handler": handler})
+if __name__ == "__main__":
+    logger.info("Starting RunPod Photobooth Worker")
+    
+    # Initialize models
+    initialize_models()
+    
+    # Start serverless worker
+    runpod.serverless.start({"handler": handler})
