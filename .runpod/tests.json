@@ -1,0 +1,89 @@
+{
+  "test_cases": [
+    {
+      "name": "basic_photobooth_test",
+      "description": "Basic photobooth test with TurboVisionXL",
+      "input": {
+        "image": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==",
+        "prompt": "professional headshot photo of a person in business attire, studio lighting, high quality"
+      },
+      "expected_output": {
+        "image": "string",
+        "format": "JPEG"
+      },
+      "timeout": 60
+    },
+    {
+      "name": "custom_model_test",
+      "description": "Test with custom SDXL model",
+      "input": {
+        "image": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==",
+        "prompt": "fantasy portrait of a warrior",
+        "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+        "num_inference_steps": 25,
+        "guidance_scale": 7.5
+      },
+      "expected_output": {
+        "image": "string",
+        "format": "JPEG"
+      },
+      "timeout": 120
+    },
+    {
+      "name": "controlnet_test",
+      "description": "Test with specific ControlNet types",
+      "input": {
+        "image": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==",
+        "prompt": "artistic portrait painting, oil on canvas",
+        "controlnet_types": ["depth"],
+        "controlnet_conditioning_scale": 0.7
+      },
+      "expected_output": {
+        "image": "string",
+        "format": "JPEG"
+      },
+      "timeout": 80
+    },
+    {
+      "name": "no_face_swap_test",
+      "description": "Test generation without face swapping",
+      "input": {
+        "image": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==",
+        "prompt": "beautiful landscape, mountains and lake",
+        "swap_faces": false,
+        "use_controlnet": false
+      },
+      "expected_output": {
+        "image": "string",
+        "format": "JPEG"
+      },
+      "timeout": 40
+    },
+    {
+      "name": "png_output_test",
+      "description": "Test PNG output format",
+      "input": {
+        "image": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==",
+        "prompt": "portrait with transparent background",
+        "output_format": "PNG"
+      },
+      "expected_output": {
+        "image": "string",
+        "format": "PNG"
+      },
+      "timeout": 60
+    }
+  ],
+  "validation": {
+    "required_fields": ["image", "format"],
+    "image_validation": {
+      "check_base64": true,
+      "max_size_mb": 10
+    }
+  },
+  "performance": {
+    "max_execution_time": 120,
+    "expected_avg_time": 45,
+    "memory_limit_gb": 24
+  }
+}

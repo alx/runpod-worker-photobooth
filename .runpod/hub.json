@@ -1,0 +1,107 @@
+{
+  "name": "Photobooth Worker with TurboVisionXL",
+  "description": "AI-powered photobooth worker that combines TurboVisionXL image generation with face swapping for creating personalized avatars. Features fast 3-5 step generation, ControlNet guidance (depth, OpenPose), and InsightFace face swapping.",
+  "readme": "README.md",
+  "tags": [
+    "photobooth",
+    "face-swap",
+    "turbovision",
+    "sdxl",
+    "controlnet",
+    "image-generation",
+    "avatar",
+    "insightface"
+  ],
+  "runtime": {
+    "handler": "handler.py",
+    "python_version": "3.11",
+    "gpu_required": true
+  },
+  "image": {
+    "dockerfile": "Dockerfile"
+  },
+  "inputs": {
+    "image": {
+      "type": "string",
+      "description": "Base64 encoded source image for face extraction",
+      "required": true
+    },
+    "prompt": {
+      "type": "string",
+      "description": "Text prompt for image generation",
+      "required": true
+    },
+    "model_id": {
+      "type": "string",
+      "description": "HuggingFace model ID (default: stablediffusionapi/turbovision_xl)",
+      "default": "stablediffusionapi/turbovision_xl"
+    },
+    "negative_prompt": {
+      "type": "string",
+      "description": "Negative prompt (not supported by TurboVisionXL)",
+      "required": false
+    },
+    "num_inference_steps": {
+      "type": "integer",
+      "description": "Number of inference steps (3-5 recommended for TurboVisionXL)",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "guidance_scale": {
+      "type": "number",
+      "description": "Guidance scale (1-2.25 recommended for TurboVisionXL)",
+      "default": 2.0,
+      "minimum": 0.0,
+      "maximum": 20.0
+    },
+    "use_controlnet": {
+      "type": "boolean",
+      "description": "Use ControlNet for guided generation",
+      "default": true
+    },
+    "controlnet_types": {
+      "type": "array",
+      "description": "ControlNet types to use",
+      "default": ["depth", "openpose"],
+      "items": {
+        "type": "string",
+        "enum": ["depth", "openpose", "canny"]
+      }
+    },
+    "swap_faces": {
+      "type": "boolean",
+      "description": "Whether to swap faces from source to generated image",
+      "default": true
+    },
+    "output_format": {
+      "type": "string",
+      "description": "Output image format",
+      "default": "JPEG",
+      "enum": ["JPEG", "PNG"]
+    }
+  },
+  "outputs": {
+    "image": {
+      "type": "string",
+      "description": "Base64 encoded result image"
+    },
+    "format": {
+      "type": "string",
+      "description": "Output image format"
+    }
+  },
+  "infrastructure": {
+    "gpu": "A100",
+    "vram_gb": 24,
+    "cpu_cores": 8,
+    "ram_gb": 32,
+    "disk_gb": 50
+  },
+  "pricing": {
+    "per_second": 0.002,
+    "idle_timeout": 300
+  },
+  "license": "MIT",
+  "version": "1.0.0"
+}

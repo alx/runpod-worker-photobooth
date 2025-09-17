@@ -58,7 +58,7 @@ CodeFormer/
 Thumbs.db
 
 # RunPod
-*.runpod
+# *.runpod
 
 # Test images
 *.jpg
